@@ -2020,6 +2020,13 @@ class HTTPPostAlerter(Alerter, PrometheusWrapper):
                             cloudevents_subject=event['subject'],
                             cloudevents_datacontenttype=event['datacontenttype'],
                         ),
+                        annotations={ "cloudevents_specversion":"1.0",
+                            "cloudevents_id":event['id'],
+                            "cloudevents_type":event['type'],
+                            "cloudevents_source":event['source'],
+                            "cloudevents_subject":event['subject'],
+                            "cloudevents_datacontenttype":event['datacontenttype'],
+                        },
                         transport_handler=default_handler,
                         sample_rate=100,  # 0.05, # Value between 0.0 and 100.0
                         encoding=Encoding.V2_JSON
